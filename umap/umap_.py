@@ -345,6 +345,7 @@ def nearest_neighbors(
 
     if verbose:
         print(ts(), "Finished Nearest Neighbor Search")
+
     return knn_indices, knn_dists, knn_search_index
 
 
@@ -590,6 +591,9 @@ def fuzzy_simplicial_set(
     )
     result.eliminate_zeros()
 
+    print("\n--- Directed Graph ---\n")
+    print(result)
+
     if apply_set_operations:
         transpose = result.transpose()
 
@@ -601,6 +605,9 @@ def fuzzy_simplicial_set(
         )
 
     result.eliminate_zeros()
+
+    print("\n--- Undirected Graph ---\n")
+    print(result)
 
     if return_dists is None:
         return result, sigmas, rhos
@@ -1141,6 +1148,9 @@ def simplicial_set_embedding(
             else:
                 embedding = init_data
 
+    print("\n--- Initialised Embedding ---\n")
+    print(embedding)
+
     epochs_per_sample = make_epochs_per_sample(graph.data, n_epochs_max)
 
     head = graph.row
@@ -1291,6 +1301,9 @@ def simplicial_set_embedding(
         re = np.log(epsilon + (re / mu_sum))
 
         aux_data["rad_emb"] = re
+
+    print("\n--- Final Embedding ---\n")
+    print(embedding)
 
     return embedding, aux_data
 
@@ -2352,6 +2365,9 @@ class UMAP(BaseEstimator):
                                    - 'allow-nan': accepts only np.nan and pd.NA values in array.
                                      Values cannot be infinite.
         """
+        print("\n--- High-Dimensional Data ---\n")
+        print(X)
+
         if self.metric in ("bit_hamming", "bit_jaccard"):
             X = check_array(X, dtype=np.uint8, order="C", force_all_finite=force_all_finite)
         else:
