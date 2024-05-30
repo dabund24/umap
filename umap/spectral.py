@@ -488,6 +488,9 @@ def _spectral_layout(
     if not scipy.sparse.issparse(L):
         L = np.asarray(L)
 
+    print("\n--- Symmetrically Normalized Laplacian Matrix ---\n")
+    print(L)
+
     k = dim + 1
     num_lanczos_vectors = max(2 * k + 1, int(np.sqrt(graph.shape[0])))
     gen = (
@@ -543,6 +546,9 @@ def _spectral_layout(
                 )
         else:
             raise ValueError("Method should either be None, 'eigsh' or 'lobpcg'")
+
+        print("\n--- Eigenvectors ---\n")
+        print(eigenvectors)
 
         order = np.argsort(eigenvalues)[1:k]
         return eigenvectors[:, order]

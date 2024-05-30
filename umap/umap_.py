@@ -1119,10 +1119,15 @@ def simplicial_set_embedding(
             metric=metric,
             metric_kwds=metric_kwds,
         )
+
+        print("\n--- Initialised Embedding From Eigenvectors Without Scaling ---\n")
+        print(embedding)
+
         # We add a little noise to avoid local minima for optimization to come
         embedding = noisy_scale_coords(
             embedding, random_state, max_coord=10, noise=0.0001
         )
+
     elif isinstance(init, str) and init == "tswspectral":
         embedding = tswspectral_layout(
             data,
