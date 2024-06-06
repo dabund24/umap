@@ -147,8 +147,13 @@ def _optimize_layout_euclidean_single_epoch(
                     grad_d += clip(2 * grad_cor_coeff * (current[d] - other[d]))
 
                 current[d] += grad_d * alpha
+                if alpha > 0.995 or alpha < 0.005:
+                    print(f"move {j} by", grad_d * alpha, f"moving towards {k}")
                 if move_other:
                     other[d] += -grad_d * alpha
+                    if alpha > 0.995 or alpha < 0.005:
+                        print(f"move {k} by", -grad_d * alpha, f"moving towards {j}")
+
 
             epoch_of_next_sample[i] += epochs_per_sample[i]
 
@@ -180,9 +185,16 @@ def _optimize_layout_euclidean_single_epoch(
                         grad_d = 0
                     current[d] += grad_d * alpha
 
+                    if alpha > 0.995 or alpha < 0.005:
+                        print(f"move {j} by", grad_d * alpha, f"moving away from {k}", n_neg_samples)
+
             epoch_of_next_negative_sample[i] += (
                 n_neg_samples * epochs_per_negative_sample[i]
             )
+
+            if alpha > 0.995 or alpha < 0.005:
+                print(head_embedding)
+                print()
 
 
 def _optimize_layout_euclidean_densmap_epoch_init(
