@@ -1,3 +1,22 @@
+=======================
+Spiced UMAP for Seminar
+=======================
+
+This is a fork of UMAP with added print statements to make the algorithm more comprehensible. Additionally, it features a script to generate an image comparing several hyper-parameters.
+
+-----
+Usage
+-----
+
+Install reqirements:
+``pip3 install requirements.txt``
+
+Run UMAP with simple dataset:
+``python3 print_example.py``
+
+Generate comparison image: (this will flood your terminal, sorry :/ )
+``python3 hyperparameter_demo.py``
+
 .. -*- mode: rst -*-
 
 .. image:: doc/logo_large.png
