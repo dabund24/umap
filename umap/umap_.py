@@ -1152,10 +1152,7 @@ def simplicial_set_embedding(
                 ).astype(np.float32)
             else:
                 embedding = init_data
-
-    print("\n--- Initialised Embedding ---\n")
-    print(embedding)
-
+                
     epochs_per_sample = make_epochs_per_sample(graph.data, n_epochs_max)
 
     head = graph.row
@@ -1203,6 +1200,9 @@ def simplicial_set_embedding(
         * (embedding - np.min(embedding, 0))
         / (np.max(embedding, 0) - np.min(embedding, 0))
     ).astype(np.float32, order="C")
+
+    print("\n--- Initialized Embedding ---\n")
+    print(embedding)
 
     if euclidean_output:
         embedding = optimize_layout_euclidean(
