@@ -186,7 +186,7 @@ def _optimize_layout_euclidean_single_epoch(
                     current[d] += grad_d * alpha
 
                     if alpha > 0.995 or alpha < 0.005:
-                        print(f"move {j} by", grad_d * alpha, f"moving away from {k}", n_neg_samples)
+                        print(f"move {j} by", grad_d * alpha, f"moving away from {k}")
 
             epoch_of_next_negative_sample[i] += (
                 n_neg_samples * epochs_per_negative_sample[i]
